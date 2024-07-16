@@ -11,21 +11,15 @@ if (process.env.RNVC_ENV === 'test') {
     currentVersion: '0.0.1',
   };
 } else {
-  const manifest = Constants.manifest
-    ? Constants.manifest
+  const manifest = Constants.expoConfig
+    ? Constants.expoConfig
     : Constants.manifest2.extra.expoClient;
   const {
     version = null,
     android: { versionCode = null, package: androidPackageName = null } = {},
     ios: { bundleIdentifier = null, buildNumber = null } = {},
   } = manifest;
-  let country;
-  if (Constants.expoVersion < 31) {
-    country = Localization.getCurrentDeviceCountryAsync();
-  } else {
-    // if can't return country use region instead
-    country = Localization.country ? Localization.country : Localization.region;
-  }
+  let country = Localization.getLocales()?.[0]?.regionCode ?? 'US'
 
   RNVersionCheck = {
     currentVersion: version,
@@ -40,7 +34,7 @@ if (process.env.RNVC_ENV === 'test') {
     }),
   };
 }
-
+``
 const COUNTRY = RNVersionCheck.country;
 const PACKAGE_NAME = RNVersionCheck.packageName;
 const CURRENT_BUILD_NUMBER = RNVersionCheck.currentBuildNumber;

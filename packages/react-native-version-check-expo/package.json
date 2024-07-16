@@ -3,6 +3,7 @@
   "version": "3.4.7",
   "description": "A version checker for react-native expo applications",
   "main": "index.js",
+  "types": "index.d.ts",
   "keywords": [
     "react-native",
     "expo",
@@ -25,8 +26,8 @@
     "expo": ">=26"
   },
   "dependencies": {
-    "expo-constants": "^14.0.2",
-    "expo-localization": "^14.0.0",
+    "expo-constants": "~15.4.5",
+    "expo-localization": "14.8.3",
     "react-native-version-check": "^3.4.7"
   },
   "devDependencies": {
